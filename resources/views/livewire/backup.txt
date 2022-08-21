@@ -1,0 +1,43 @@
+   {{-- <form action="{{ route('download') }}"
+                            method="POST" class="row">
+                            @csrf
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="input_from">From</label>
+                                    <input type="date" class="form-control" name="start" id="input_from"
+                                        placeholder="Start Date">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="input_to">To</label>
+                                    <input type="date" class="form-control" name="end" id="input_to"
+                                        placeholder="End Date">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12  d-flex justify-content-center">
+                                <button type="submit" class="btn btn-info">Download</button>
+                            </div>
+                            </form> --}}
+                            
+                            
+       <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:66%"> {{ $percentage }} % Complete and {{ $sms }} total and {{ $error }} failed ({{ $success }} success) </div>
+</div>
+
+
+ 	<svg wire:loading wire:target="storePost" class="
+                                    w-5
+                                    h-5
+                                    -ml-1
+                                   text-green
+                                   text-center
+                                    animate-spin
+                                " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+					<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+					<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"> </path>
+				</svg>
+				
+				
+				

@@ -1,0 +1,114 @@
+<?php
+
+namespace App\Http\Livewire;
+
+use Livewire\Component;
+use DB;
+
+class ShowAllProgress extends Component
+{
+   public $dataArray = [] , $isLoaded = false;
+   
+    public function render()
+    {
+        $start = date("Y-m-d");
+        $end = date("Y-m-d");
+
+    
+
+        $all_data = DB::table('sms')
+                    ->select(DB::raw('convert( VARCHAR(20), created_at, 105) ) as date'),  DB::raw('count(id) as tot'), 'status')
+                    ->whereDate('created_at', '>=', $start)
+                    ->whereDate('created_at', '<=', $end)
+                    ->groupBy('status')
+                    // ->groupBy(DB::raw('CAST(created_at as date)'))
+                    ->groupBy('date')
+                    ->orderBy('date', 'desc')
+                    ->get();
+
+        dd($all_data);
+                    
+
+        foreach($all_data as $data) {
+            if ( !array_key_exists($data->date, $this->dataArray) ) {
+               $this->dataArray[$data->date] = [
+                   'date' => $data->date,
+                   '0' => 0,
+                   '1' => 0,
+                   '-1' => 0
+                ];
+            }
+            
+            $this->dataArray[$data->date][$data->status] = $data->tot;
+            $this->isLoaded = true;
+        }
+                    
+ 
+
+         
+        return view('livewire.show-all-progress');
+    }
+}
+
+
+
+<?php
+
+namespace App\Http\Livewire;
+
+use App\Http\Controllers\QueryController;
+use App\Models\Sms;
+use Illuminate\Support\Facades\Session;
+use Livewire\Component;
+use App\Http\Livewire\ShowAllProgress;
+
+
+class Progressbar extends Component
+{
+
+    public $starts, $ends , $sms , $success , $error  , $percentage ;
+     public $title;
+    public $description, $showBar = false , $isDone = false;
+
+    public function render()
+    {
+            
+            $this->starts =  Session::get('start') ?? date('Y-m-d');
+            $this->ends = Session::get('end') ?? date('Y-m-d');
+            
+            
+            
+            
+            $this->sms = Sms::whereDate('created_at','>=', $this->starts)->whereDate('created_at','<=',$this->ends)->count();
+            
+            $this->success = Sms::whereDate('created_at','>=', $this->starts)->whereDate('created_at','<=',$this->ends)->where('status', 1)->count();
+            
+            
+           $this->failed = Sms::whereDate('created_at','>=', $this->starts)->whereDate('created_at','<=',$this->ends)->where('status', -1)->count();
+
+            
+            
+            
+            
+            $this->error = Sms::whereDate('created_at','>=', $this->starts)->whereDate('created_at','<=',$this->ends)->where('status', -1)->count();
+            
+            $ShowALL = new ShowAllProgress();
+           
+            
+            if($this->sms != 0){
+                $this->percentage = ($this->success / $this->sms) * 100; 
+                 $this->showBar = true;
+                  $ShowALL->render();
+                 if($this->success + $this->failed == $this->sms){
+                     $this->isDone = true;
+                 }
+                        
+            }
+            
+            
+            return view('livewire.progressbar');
+    }
+
+
+ 
+}

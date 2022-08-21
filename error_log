@@ -1,0 +1,13 @@
+[14-Jun-2022 10:02:04 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bdappsa1/public_html/Olympic_solution_version_test/vendor/composer/autoload_static.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bdappsa1/public_html/Olympic_solution_version_test/vendor/composer/autoload_real.php:31
+Stack trace:
+#0 /home/bdappsa1/public_html/Olympic_solution_version_test/vendor/autoload.php(12): ComposerAutoloaderInitefb0af956ad6e904aa4f2ae682face30::getLoader()
+#1 /home/bdappsa1/public_html/Olympic_solution_version_test/artisan(18): require('/home/bdappsa1/...')
+#2 {main}
+  thrown in /home/bdappsa1/public_html/Olympic_solution_version_test/vendor/composer/autoload_real.php on line 31
+[14-Jun-2022 10:07:04 UTC] PHP Notice:  require(): Read of 514366 bytes failed with errno=14 Bad address in /home/bdappsa1/public_html/Olympic_solution_version_test/vendor/composer/autoload_real.php on line 31
+[14-Jun-2022 10:07:04 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bdappsa1/public_html/Olympic_solution_version_test/vendor/composer/autoload_static.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bdappsa1/public_html/Olympic_solution_version_test/vendor/composer/autoload_real.php:31
+Stack trace:
+#0 /home/bdappsa1/public_html/Olympic_solution_version_test/vendor/autoload.php(12): ComposerAutoloaderInitefb0af956ad6e904aa4f2ae682face30::getLoader()
+#1 /home/bdappsa1/public_html/Olympic_solution_version_test/artisan(18): require('/home/bdappsa1/...')
+#2 {main}
+  thrown in /home/bdappsa1/public_html/Olympic_solution_version_test/vendor/composer/autoload_real.php on line 31
